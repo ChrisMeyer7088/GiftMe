@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginPageComponent implements OnInit {
 
+  LoginPost;
+
   constructor() { }
 
   ngOnInit() {
   }
 
+  onLoginUser() {
+    alert('Attempting User Login');
+  }
 }
