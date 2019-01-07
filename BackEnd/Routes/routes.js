@@ -4,6 +4,7 @@ const User = require('../Database/Models/user');
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
+const dbcfg = require('../Config/dbconfig.js');
 
 //Registration
 router.post('/Register', (req, res, next) => {
@@ -38,22 +39,38 @@ router.post('/Register', (req, res, next) => {
 router.post('/Login', (req, res, next) => {
     User.getUserByUserName(req.body.UserName, (err, user) => {
         if(err){
-            res.json({success: false, msg: "Failed to Login"});
+            throw err;
         } else {
             if(user != null) {
-                bcrypt.hash(req.body.Password, user.Salt, (err, hash) => {
+                bcrypt.compare(req.body.Password, user.Password, (err, isMatch) => {
                     if(err) throw err;
-                    if(hash == user.Password){
-                        res.json({success: true, msg: "Logged In Successfully"});
+                    if(isMatch){
+                        let token = jwt.sign(user.toJSON(), dbcfg.secret, {
+                            expiresIn: 604800 // 1 week
+                        });
+              
+                        res.json({
+                        success: true,
+                        token: 'JWT '+ token,
+                        user: {
+                            id: user._id,
+                            username: user.username,
+                            email: user.Email
+                            }
+                        });
                     } else {
-                        res.json({success: true, msg: "UserName or Password are incorrect"})
+                        res.json({success: false, msg: "Password is incorrect"});
                     }
                 });
             } else {
-                res.json({success: true, msg: "UserName or Password are incorrect"});
+                res.json({success: false, msg: "UserName is incorrect"});
             }
         }
     })
 });
+
+router.get('/me', passport.authenticate('jwt', {session: false}), (req, res, next) => {
+    res.json({works: true});
+})
 
 module.exports = router;

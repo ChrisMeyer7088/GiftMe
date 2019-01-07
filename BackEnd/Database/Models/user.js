@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
-const dbcfg = require('../dbconfig');
+const dbcfg = require('../../Config/dbconfig.js');
 
 //User Schema
 
@@ -14,10 +14,6 @@ const UserSchema = mongoose.Schema({
         required: true
     },
     Password: {
-        type: String,
-        required: true
-    },
-    Salt: {
         type: String,
         required: true
     }
@@ -43,4 +39,11 @@ module.exports.addUser = function(newUser, callback){
             newUser.save(callback);
         });
     })
+}
+
+module.exports.comparePassword = function(candidatePassword, hash, callback){
+    bcrypt.compare(candidatePassword, hash, (err, isMatch) => {
+        if(err) throw err;
+        callback(null, isMatch);
+    });
 }

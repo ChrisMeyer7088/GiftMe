@@ -4,15 +4,15 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const passport = require('passport');
 const mongoose = require('mongoose');
-const dbcfg = require('./Database/dbconfig.js');
+const dbcfg = require('./Config/dbconfig.js');
 const routes = require('./Routes/routes');
 
+//Database Connection
 mongoose.connect(dbcfg.database, {useNewUrlParser: true}).then(()=>{
     console.log('Connected to database: ' + dbcfg.database);
 }, err => {
     console.log('Error connecting to database');
 });
-
 
 const app = express();
 //Port
@@ -23,6 +23,13 @@ app.use(cors());
 //Body-Parser
 app.use(bodyParser.json());
 
+//Passport
+app.use(passport.initialize());
+app.use(passport.session());
+
+require('./Config/passport')(passport);
+
+//Routing
 app.use('/Auth', routes);
 
 app.get('/', (req, res) => {
