@@ -8,12 +8,12 @@
 
   <div class="LoginBox">
     <label for="UserName">UserName:</label>
-    <input type="text" name="UserName" placeholder="UserName">
+    <input type="text" name="UserName" [(ngModel)]="UserName" placeholder="UserName">
   </div>
 
   <div class="LoginBox">
       <label for="psswd">Password:</label>
-      <input type="password" name="psswd" placeholder="Password">
+      <input type="password" name="Password" [(ngModel)]="Password" placeholder="Password">
   </div>
 
   <div class="submitBtn">
@@ -21,7 +21,7 @@
   </div>
 
   <div class="Register">
-    <p>Don't have an account? <a routerLink="/registration">Create one!</a></p>
+    <p>Don't have an account? <a routerLink="/register">Create one!</a></p>
   </div>
 
 </body>

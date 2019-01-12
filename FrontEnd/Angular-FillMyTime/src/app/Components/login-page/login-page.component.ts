@@ -8,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 export class LoginPageComponent implements OnInit {
 
   LoginPost;
+  UserName: String;
+  Password: String;
 
   constructor() { }
 
