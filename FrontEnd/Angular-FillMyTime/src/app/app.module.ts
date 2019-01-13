@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,6 +10,7 @@ import { WelcomePageComponent } from './Components/welcome-page/welcome-page.com
 import { NavbarComponent } from './Components/navbar/navbar.component';
 import { FormsModule } from '@angular/forms';
 import { ValidateService } from './Services/validate.service';
+import { AuthService } from './Services/auth.service';
 import { NgFlashMessagesModule } from 'ng-flash-messages';
 
 
@@ -24,9 +26,10 @@ import { NgFlashMessagesModule } from 'ng-flash-messages';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    NgFlashMessagesModule
+    NgFlashMessagesModule,
+    HttpClientModule
   ],
-  providers: [ValidateService],
+  providers: [ValidateService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

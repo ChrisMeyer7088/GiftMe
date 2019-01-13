@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ValidateService } from '../../Services/validate.service';
 import { NgFlashMessageService } from 'ng-flash-messages';
+import { AuthService } from '../../Services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registration-page',
@@ -14,57 +16,63 @@ export class RegistrationPageComponent implements OnInit {
   Email: string;
   CPassword: string;
 
-  constructor(private validateService: ValidateService, private flashMessage: NgFlashMessageService) { }
+  constructor(
+    private validateService: ValidateService,
+    private flashMessage: NgFlashMessageService,
+    private authService: AuthService,
+    private router: Router
+    ) { }
 
   ngOnInit() {
   }
 
+  createMessage(message) {
+    this.flashMessage.showFlashMessage({
+      messages: [message],
+      dismissible: true,
+      timeout: false,
+      type: 'danger'
+    });
+  }
+
   onRegisterUser() {
 
+    //Create User Object
     const user = {
       UserName: this.UserName,
       Password: this.Password,
       Email: this.Email
     };
 
+    //Validate user information
     if(!this.validateService.validateRegister(user)) {
-      this.flashMessage.showFlashMessage({
-        messages: ['All fields must be filled in to register!'],
-        dismissible: true,
-        timeout: false,
-        type: 'danger'
-      });
+      this.createMessage('All fields must be filled in to register!');
     }
     else if(!this.validateService.validateEmail(user.Email)) {
-      this.flashMessage.showFlashMessage({
-        messages: ['Must use a valid email!'],
-        dismissible: true,
-        timeout: false,
-        type: 'danger'
-      });
+      this.createMessage('Must use a valid email!');
     }
     else if(!this.validateService.validatePassword(user.Password)) {
-      this.flashMessage.showFlashMessage({
-        messages: ['Password must be greater than 5 characters and contain at least 1 upper case letter and number!'],
-        dismissible: true,
-        timeout: false,
-        type: 'danger'
-      });
+      this.createMessage('Password must be greater than 5 characters and contain at least 1 upper case letter and number!');
     }
-    else if (this.CPassword !== this.Password)
-    {
-      this.flashMessage.showFlashMessage({
-        messages: ['Passwords do not match!'],
-        dismissible: true,
-        timeout: false,
-        type: 'danger'
-      });
+    else if (this.CPassword !== this.Password) {
+    this.createMessage('Passwords do not match!');
     }
     else {
-      this.UserName = '';
-      this.Password = '';
-      this.CPassword = '';
-      this.Email = '';
+      //Register The User
+
+      this.authService.registerUser(user).subscribe(data => {
+        if(data.success) {
+          this.router.navigate(['/login'])
+          this.flashMessage.showFlashMessage({
+            messages: ['You have been successfully registered'],
+            dismissible: false,
+            timeout: 2000,
+            type: 'success'
+          });
+        } else {
+          this.createMessage('Something went wrong. Please try again and if this problem persists contact technical support');
+        }
+      });
       }
 
   }
