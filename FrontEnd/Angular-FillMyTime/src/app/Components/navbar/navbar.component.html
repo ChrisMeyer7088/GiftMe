@@ -1,9 +1,10 @@
 <div class='Navbar'>
   <ul>
-    <li><a (click)="onLogoutClick()" href="#">Logout</a></li>
-    <li [routerLinkActive]="['active']"><a routerLink="/register">Register</a></li>
-    <li [routerLinkActive]="['active']"><a routerLink="/login">Login</a></li>
-    <li style="float:left; color:white"><a class="title">FillMyTime</a></li>
+    <li *ngIf="authService.isLoggedIn()"><a (click)="onLogoutClick()" href="#">Logout</a></li>
+    <li *ngIf="!authService.isLoggedIn()" [routerLinkActive]="['active']"><a routerLink="/register">Register</a></li>
+    <li *ngIf="!authService.isLoggedIn()" [routerLinkActive]="['active']"><a routerLink="/login">Login</a></li>
+    <li *ngIf="authService.isLoggedIn()" [routerLinkActive]="['active']"><a routerLink="/home">Home</a></li>
+    <li style="float:left; color:white"><a class="title">GiftMe</a></li>
   </ul>
   <br>
 </div>

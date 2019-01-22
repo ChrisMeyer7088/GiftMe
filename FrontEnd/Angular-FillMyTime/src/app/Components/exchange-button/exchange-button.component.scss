@@ -1,0 +1,20 @@
+#CreateExch{
+  margin: 4px 20px;
+  padding: 10px 32px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 16px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  background-color: #4CAF50;
+  color: white;
+}
+
+#CreateExch:hover{
+  background-color: #f1f1f1;
+  color: black;
+  border: 2px solid #4CAF50;
+}
+
+#CreateExchangeForm{
+  display: none;
+}

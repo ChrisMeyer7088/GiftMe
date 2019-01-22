@@ -5,15 +5,17 @@ const passport = require('passport');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const dbcfg = require('../Config/dbconfig.js');
+const Holiday = require('../Database/Models/holiday');
+const Event = require('../Database/Models/event');
 
 //Registration
 router.post('/Register', (req, res, next) => {
     User.getUserByUserName(req.body.UserName, (err, user) => {
         if(err){
-            res.json({success: false, msg: "Failed to register user"});
+            res.json({success: false, exists: false, msg: "Failed to register user"});
         } else {
             if(user != null) {
-                res.json({success: true, msg: "UserName already in use"});
+                res.json({success: false, exists: true, msg: "UserName already in use"});
             } else {
 
                 let newUser = new User({
@@ -25,9 +27,9 @@ router.post('/Register', (req, res, next) => {
             
                 User.addUser(newUser, (err, user) => {
                     if(err) {
-                        res.json({success: false, msg: "Failed to register user"})
+                        res.json({success: false, exists: false, msg: "Failed to register user"})
                     } else {
-                        res.json({success: true, msg: "User registered"})
+                        res.json({success: true, exists: false, msg: "User registered"})
                     }
                 });
             }
@@ -69,8 +71,30 @@ router.post('/Login', (req, res, next) => {
     })
 });
 
-router.get('/me', passport.authenticate('jwt', {session: false}), (req, res, next) => {
-    res.json({works: true});
-})
+router.get('/Home', passport.authenticate('jwt', {session: false}), (req, res, next) => {
+    Holiday.getCurrentHoliday((err, holiday) => {
+        if(err){
+            console.log(err);
+            Event.getEvents(req.user.UserName, (err, events) => {
+                if(err) {
+                    console.log(err);
+                    res.json({user: req.user}); 
+                } else {
+                    res.json({user: req.user, events: events}); 
+                }
+            });
+        }
+        else {
+            Event.getEvents(req.user.UserName, (err, events) => {
+                if(err) {
+                    console.log(err);
+                    res.json({user: req.user, holiday: holiday}); 
+                } else {
+                    res.json({user: req.user, holiday: holiday, events: events}); 
+                }
+            }); 
+        }
+    });
+});
 
 module.exports = router;

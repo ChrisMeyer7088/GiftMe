@@ -1,0 +1,54 @@
+.page-header{
+  display: inline;
+  font-size: 2.5em;
+  // border: 1px solid;
+  margin: 0px 20px;
+}
+
+.Date {
+  font-size: 2.5em;
+  float: right;
+  display: inline;
+  // border: 1px solid;
+  text-align: right;
+  margin: 0px 20px;
+}
+
+.Holiday{
+  margin: 0px 20px;
+  text-align: right;
+  // border: 1px solid;
+}
+
+#CExchanges{
+  width: 98%;
+  margin: 0px 20px;
+  border: 1px solid;
+}
+
+#CExchanges td, #CExchanges th{
+  padding: 8px;
+  border: 1px solid #ddd;
+}
+
+#CExchanges th {
+  font-size:30px;
+  background-color: #4CAF50;
+  color: white;
+}
+
+#CExchanges td {
+  font-size:25px;
+}
+
+.Holiday h2 {
+  font-size: 2em;
+}
+
+.Holiday p{
+  font-size: 1.5em;
+}
+
+body{
+  background-color: #f1f1f1;
+}
