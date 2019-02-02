@@ -6,18 +6,28 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./exchange-button.component.scss']
 })
 export class ExchangeButtonComponent implements OnInit {
-
+  showForm: boolean = false;
+  exchTitle: String;
+  minExchPrice: String;
+  maxExchPrice: String;
   constructor() { }
 
   ngOnInit() {
   }
 
   displayForm() {
-    document.getElementById("CreateExchangeForm").style.display = "block";
+    this.showForm = true;
   }
 
   hideForm() {
-    document.getElementById("CreateExchangeForm").style.display = "none";
+    this.showForm = false;
   }
 
+  createExchange(){
+    if(this.exchTitle == null) this.exchTitle ='';
+    if(this.minExchPrice == null) this.minExchPrice ='0';
+    if(this.maxExchPrice == null) this.maxExchPrice ='0';
+
+
+  }
 }

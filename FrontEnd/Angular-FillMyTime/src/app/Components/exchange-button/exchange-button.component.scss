@@ -1,4 +1,4 @@
-#CreateExch{
+.CreateExch{
   margin: 4px 20px;
   padding: 10px 32px;
   cursor: pointer;
@@ -9,12 +9,109 @@
   color: white;
 }
 
-#CreateExch:hover{
+.CreateExch:hover, #create-btn:hover{
   background-color: #f1f1f1;
   color: black;
-  border: 2px solid #4CAF50;
 }
 
-#CreateExchangeForm{
-  display: none;
+label, input {
+  padding: 8px;
 }
+
+.dollar-sign{
+  font-size: 1.5em;
+  font-display: bold;
+  display: inline;
+  padding-left: 8px;
+}
+
+.form-container{
+  border: solid;
+  border-color: #4CAF50;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  width: 50%;
+  text-align: center;
+  margin-bottom: 10px;
+  margin-left: 20px;
+}
+
+.form-container label {
+  font-size: 1.5em;
+}
+
+.dollar-input{
+  height: 25px;
+  width: 80px;
+  margin-left: 5px;
+}
+
+#create-btn{
+  margin: 8px;
+  background-color: #4CAF50;
+  color: white;
+  padding: 5px 20px;
+  border: none;
+  width: 25%;
+  opacity: 0.9;
+  font-size: 1.5em;
+  font-display: bold;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+#close-btn:active, #create-btn:active, .CreateExch:active{
+  background: #e5e5e5;
+  -webkit-box-shadow: inset 0px 0px 5px #c1c1c1;
+  -moz-box-shadow: inset 0px 0px 5px #c1c1c1;
+  box-shadow: inset 0px 0px 5px #c1c1c1;
+  outline: none;
+}
+
+#create-btn:hover{
+  cursor: pointer;
+}
+
+#close-btn {
+  float: right;
+  color: #4CAF50;
+  background-color: transparent;
+  border: none;
+  font-display: bold;
+  font-size: 1.5em;
+  font-stretch: expanded;
+  margin-right: 3px;
+}
+
+#close-btn:hover{
+  cursor: pointer;
+}
+
+#exchName{
+  height: 28px;
+  width: 250px;
+}
+
+#exchName[type='text'], .dollar-input[type='number']{
+  font-size: 1.5em;
+}
+
+.dollar-input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.dollar-input[type="number"]::-webkit-outer-spin-button, .dollar-input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+#min-price{
+  margin-right: 5%;
+}
+
+input:-webkit-autofill:focus, #exchName:focus, .dollar-input:focus{
+    -webkit-box-shadow: 0 0 0 30px yellow inset !important;
+}
+
+input:-webkit-autofill, #exchName, .dollar-input{
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
+}
+
