@@ -12,6 +12,9 @@ import { FormsModule } from '@angular/forms';
 import { ValidateService } from './Services/validate.service';
 import { AuthService } from './Services/auth.service';
 import { NgFlashMessagesModule } from 'ng-flash-messages';
+import { AuthGuardService } from './Services/Guards/auth-guard.service';
+import { LoginGuardService } from './Services/Guards/login-guard.service';
+import { ExchangeButtonComponent } from './Components/exchange-button/exchange-button.component';
 
 
 @NgModule({
@@ -20,7 +23,8 @@ import { NgFlashMessagesModule } from 'ng-flash-messages';
     RegistrationPageComponent,
     LoginPageComponent,
     WelcomePageComponent,
-    NavbarComponent
+    NavbarComponent,
+    ExchangeButtonComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +33,7 @@ import { NgFlashMessagesModule } from 'ng-flash-messages';
     NgFlashMessagesModule,
     HttpClientModule
   ],
-  providers: [ValidateService, AuthService],
+  providers: [ValidateService, AuthService, AuthGuardService, LoginGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

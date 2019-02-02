@@ -1,3 +1,23 @@
-<p>
-  welcome-page works!
-</p>
+<div *ngIf="user">
+  <h1 class="page-header">UserName: {{user.UserName}}</h1>
+  <h1 class="Date">Today is {{today}}</h1>
+  <div *ngIf="holiday" class="Holiday">
+    <hr>
+    <h2>Today's Holiday is {{holiday.Name}}</h2>
+    <p>{{holiday.Description}}</p>
+  </div>
+  <div class="Exchanges">
+    <app-exchange-button></app-exchange-button>
+    <table id="CExchanges">
+      <tr>
+        <th>Current Exchanges</th>
+        <th>Invited Exchanges</th>
+      </tr>
+    </table>
+  </div>
+  <div *ngIf="!holiday">
+    <h2>Error getting holiday</h2>
+  </div>
+</div>
+
+<h1 *ngIf="!user">User not loaded</h1>

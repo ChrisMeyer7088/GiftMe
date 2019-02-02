@@ -62,13 +62,15 @@ export class RegistrationPageComponent implements OnInit {
 
       this.authService.registerUser(user).subscribe(data => {
         if(data.success) {
-          this.router.navigate(['/login'])
-          this.flashMessage.showFlashMessage({
-            messages: ['You have been successfully registered'],
-            dismissible: false,
-            timeout: 2000,
-            type: 'success'
-          });
+            this.router.navigate(['/login'])
+            this.flashMessage.showFlashMessage({
+              messages: ['You have been successfully registered'],
+              dismissible: false,
+              timeout: 2000,
+              type: 'success'
+            });
+        } else if(data.exists) {
+          this.createMessage('UserName already exists, please select a different UserName');
         } else {
           this.createMessage('Something went wrong. Please try again and if this problem persists contact technical support');
         }

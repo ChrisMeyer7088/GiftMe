@@ -6,10 +6,23 @@ const passport = require('passport');
 const mongoose = require('mongoose');
 const dbcfg = require('./Config/dbconfig.js');
 const routes = require('./Routes/routes');
+const Holiday = require('./Database/Models/holiday');
 
 //Database Connection
 mongoose.connect(dbcfg.database, {useNewUrlParser: true}).then(()=>{
     console.log('Connected to database: ' + dbcfg.database);
+    // Holiday.storeDate(new Holiday({
+    //     Name: "Public Sleeping Day", 
+    //     Date:'02/28', 
+    //     Description:"Because society needs to relax a bit. Make sure to bring your valueables!"}), 
+    // (err, date) => {
+    //     if(err){
+    //         console.log(err);
+    //     } else {
+    //         console.log(date);
+    //     }
+        
+    // });
 }, err => {
     console.log('Error connecting to database');
 });
@@ -29,8 +42,10 @@ app.use(passport.session());
 
 require('./Config/passport')(passport);
 
+app.use(express.static(path.join(__dirname, 'public')));
+
 //Routing
-app.use('/Auth', routes);
+app.use('/', routes);
 
 app.get('/', (req, res) => {
     res.send("Invalid Endpoint");

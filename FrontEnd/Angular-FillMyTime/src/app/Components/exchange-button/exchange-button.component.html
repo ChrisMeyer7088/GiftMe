@@ -1,0 +1,21 @@
+<div *ngIf="showForm" id="exchangeForm" class="form-popup">
+  <form (submit)='createExchange()' class="form-container" >
+    <div>
+      <label>New Exchange Name:</label>
+      <input name='exchTitle' [(ngModel)]="exchTitle" id='exchName' type='text'>
+      <button id='close-btn' type='button' (click)='hideForm()'>X</button>
+    </div>
+    <div>
+      <label>Minimum Price:</label>
+      <p class='dollar-sign'>$</p>
+      <input name='minExchPrice' [(ngModel)]="minExchPrice" min='0.0' id='min-price' class='dollar-input' type="number">
+      <label>Maximum Price:</label>
+      <p class='dollar-sign'>$</p>
+      <input name='maxExchPrice' [(ngModel)]="maxExchPrice" min='0.0' class='dollar-input' type="text">
+    </div>
+    <div>
+      <button type="submit" id='create-btn'>Create</button>
+    </div>
+  </form>
+</div>
+<button *ngIf="!showForm" class="CreateExch" type="button" (click)="displayForm()">Create Exchange</button>
