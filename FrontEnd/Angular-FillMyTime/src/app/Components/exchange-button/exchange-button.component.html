@@ -1,21 +1,45 @@
-<div *ngIf="showForm" id="exchangeForm" class="form-popup">
-  <form (submit)='createExchange()' class="form-container" >
-    <div>
-      <label>New Exchange Name:</label>
-      <input name='exchTitle' [(ngModel)]="exchTitle" id='exchName' type='text'>
-      <button id='close-btn' type='button' (click)='hideForm()'>X</button>
+<div id='container-new-exchange'>
+    <button id="btn-new-exchange" type="button" (click)="displayForm()">New Exchange</button>
+</div>
+<div *ngIf='showForm' id="container-form" [ngClass]="{'show':showForm}">
+  <form (submit)='createExchange()' class="form" >
+    <div class='container-fields'>
+      <div>
+        <label>New Exchange Title:</label>
+      </div>
+      <input name='exchTitle' [(ngModel)]="exchTitle" type='text' class='input-text' placeholder="Enter a title...">
+    </div>
+    <div class='container-fields'>
+      <table class='table-fields'>
+        <tr>
+          <td>
+              <label>Exchange Date:</label>
+          </td>
+          <td>
+              <label>Exchange Time:</label>
+          </td>
+        </tr>
+        <tr>
+          <td>
+              <input type='date'>
+          </td>
+          <td>
+              <input type='time' class='input-time'>
+          </td>
+        </tr>
+      </table>
     </div>
     <div>
-      <label>Minimum Price:</label>
-      <p class='dollar-sign'>$</p>
-      <input name='minExchPrice' [(ngModel)]="minExchPrice" min='0.0' id='min-price' class='dollar-input' type="number">
-      <label>Maximum Price:</label>
-      <p class='dollar-sign'>$</p>
-      <input name='maxExchPrice' [(ngModel)]="maxExchPrice" min='0.0' class='dollar-input' type="text">
+      <div>
+        <label>Minimum Exchange Amount:</label>
+      </div>
+      <input type='number' placeholder="0.00" min='0'>
     </div>
-    <div>
-      <button type="submit" id='create-btn'>Create</button>
+    <div class='container-btn-create'>
+      <button type="submit" id='btn-create'>Create</button>
+      <div>
+          <button type="button" id='btn-close' (click)='hideForm()'>Cancel</button>
+      </div>
     </div>
   </form>
 </div>
-<button *ngIf="!showForm" class="CreateExch" type="button" (click)="displayForm()">Create Exchange</button>
