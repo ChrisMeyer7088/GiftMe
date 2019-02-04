@@ -27,7 +27,5 @@ export class ExchangeButtonComponent implements OnInit {
     if(this.exchTitle == null) this.exchTitle ='';
     if(this.minExchPrice == null) this.minExchPrice ='0';
     if(this.maxExchPrice == null) this.maxExchPrice ='0';
-
-
   }
 }

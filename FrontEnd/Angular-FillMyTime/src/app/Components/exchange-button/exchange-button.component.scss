@@ -1,64 +1,87 @@
-.CreateExch{
-  margin: 4px 20px;
+#btn-new-exchange{
   padding: 10px 32px;
   cursor: pointer;
   border-radius: 4px;
-  font-size: 16px;
+  font-size: 20px;
+  font-style: bold;
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-  background-color: #4CAF50;
+  background-color: #333;
   color: white;
 }
 
-.CreateExch:hover, #create-btn:hover{
+table.table-fields{
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#container-new-exchange{
+  text-align: left;
+  margin: 4px 0px 8px 20px;
+  position: relative;
+}
+
+#btn-new-exchange:hover, #create-btn:hover{
   background-color: #f1f1f1;
   color: black;
 }
 
-label, input {
+label {
   padding: 8px;
 }
 
-.dollar-sign{
+input{
+  margin: 8px;
+}
+
+.input-dollar{
+  width: 80px;
+}
+
+label{
   font-size: 1.5em;
   font-display: bold;
   display: inline;
   padding-left: 8px;
 }
 
-.form-container{
+#container-form{
+  width: 20%;
   border: solid;
-  border-color: #4CAF50;
+  border-color: #333;
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-  width: 50%;
   text-align: center;
   margin-bottom: 10px;
   margin-left: 20px;
+  background-color: #f1f1f1;
+  position: absolute;
+  z-index: 1;
 }
 
-.form-container label {
-  font-size: 1.5em;
+.container-btn-create{
+  text-align: center;
 }
 
-.dollar-input{
-  height: 25px;
-  width: 80px;
-  margin-left: 5px;
-}
 
-#create-btn{
-  margin: 8px;
-  background-color: #4CAF50;
+#btn-create, #btn-close{
+  margin-top: 30px;
+  background-color: #333;
   color: white;
   padding: 5px 20px;
   border: none;
-  width: 25%;
+  width: 30%;
   opacity: 0.9;
   font-size: 1.5em;
   font-display: bold;
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 
-#close-btn:active, #create-btn:active, .CreateExch:active{
+#btn-close{
+  background-color: red;
+  margin-bottom: 8px;
+  margin-top: 8px;
+}
+
+button:active{
   background: #e5e5e5;
   -webkit-box-shadow: inset 0px 0px 5px #c1c1c1;
   -moz-box-shadow: inset 0px 0px 5px #c1c1c1;
@@ -66,39 +89,19 @@ label, input {
   outline: none;
 }
 
-#create-btn:hover{
+button:hover{
   cursor: pointer;
 }
 
-#close-btn {
-  float: right;
-  color: #4CAF50;
-  background-color: transparent;
-  border: none;
-  font-display: bold;
-  font-size: 1.5em;
-  font-stretch: expanded;
-  margin-right: 3px;
-}
-
-#close-btn:hover{
-  cursor: pointer;
-}
-
-#exchName{
-  height: 28px;
-  width: 250px;
-}
-
-#exchName[type='text'], .dollar-input[type='number']{
+.input-text[type='text'], .input-dollar[type='number']{
   font-size: 1.5em;
 }
 
-.dollar-input[type="number"] {
+.input-dollar[type="number"] {
   -moz-appearance: textfield;
 }
 
-.dollar-input[type="number"]::-webkit-outer-spin-button, .dollar-input[type="number"]::-webkit-inner-spin-button {
+.input-dollar[type="number"]::-webkit-outer-spin-button, .input-dollar[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
@@ -107,11 +110,25 @@ label, input {
   margin-right: 5%;
 }
 
-input:-webkit-autofill:focus, #exchName:focus, .dollar-input:focus{
+input:-webkit-autofill:focus, .input-text:focus, .input-dollar:focus{
     -webkit-box-shadow: 0 0 0 30px yellow inset !important;
 }
 
-input:-webkit-autofill, #exchName, .dollar-input{
+input:-webkit-autofill, .input-text, .input-dollar{
   -webkit-box-shadow: 0 0 0 30px white inset !important;
 }
 
+@-webkit-keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity:1 ;}
+}
+
+.show {
+  -webkit-animation: fadeIn .3s;
+  animation: fadeIn .3s;
+}
