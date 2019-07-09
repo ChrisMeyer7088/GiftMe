@@ -1,2 +1,2 @@
-# FillMyTime
-A ToDo List Application using the MEAN stack
+# GiftMe
+A Gift Exchange Application using the MEAN stack
