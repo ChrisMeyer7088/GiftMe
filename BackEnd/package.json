@@ -13,7 +13,7 @@
     "bcryptjs": "*",
     "body-parser": "*",
     "cors": "*",
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "jsonwebtoken": "*",
     "mongoose": "*",
     "nodemon": "^1.18.9",
